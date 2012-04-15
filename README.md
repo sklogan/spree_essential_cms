@@ -14,17 +14,7 @@ Otherwise, follow these steps to get up and running with SpreeEssentialCms:
 Add spree_essential_cms to your Gemfile:
 
 ```ruby
-# Spree 1.1.x
-gem 'spree_essential_cms', :git => 'git://github.com/citrus/spree_essential_cms.git', :branch => 'master'
-
-# Spree 1.0.x
-gem 'spree_essential_cms', '~> 0.3.0.rc1'
-
-# Spree 0.70.x
-gem 'spree_essential_cms', '~> 0.2.1'
-
-# Spree 0.60.x and below
-gem 'spree_essential_cms', '~> 0.1.2'
+gem 'spree_essential_cms', '>= 0.2.1'
 ```
 
 Now, bundle up with:
@@ -51,19 +41,6 @@ Boot your server and checkout the admin at `localhost:3000/admin`!
 ```bash
 bundle exec rails s
 ```
-
-### To use the built in main menu create a deface override in your application that looks like this:
-
-```ruby
-# app/overrides/main_menu.rb
-Deface::Override.new(:virtual_path  => "spree/shared/_store_menu",
-                     :name          => "spree_essential_cms_main_menu_items",
-                     :insert_after  => "#home-link[data-hook]",
-                     :partial       => "spree/shared/main_menu_items",
-                     :disabled      => false)
-```
-
-This example override can be found in `test/dummy_hooks/templates/main_menu.rb`
 
 
 ------------------------------------------------------------------------------
@@ -103,7 +80,7 @@ Use a content decorator when you want different contexts to have their own image
 
 # app/models/content_decorator.rb
 
-Spree::Content.class_eval do
+Content.class_eval do
 
   # override default image sizes
   def default_attachment_sizes
@@ -130,18 +107,12 @@ Spree::Content.class_eval do
 end
 ```
 
-### Custom Home Page
-
-This extension modifies the `Spree::HomeController.index` method and redirects to `/products`
-if no root page is defined in the spree CMS. In order to define a custom home page you'll need to use another view
-off of the `Spree::HomeController` class such as `splash`, add the root route
-(`root :to => 'spree/home#splash'`) to your `config/routes.rb`, and add a blank page with path "/" in the spree CMS.
 
 ------------------------------------------------------------------------------
 Demo
 ------------------------------------------------------------------------------
 
-You can easily use the `test/dummy` app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
+You can easily use the test/dummy app as a demo of spree_essential_cms. Just `cd` to where you develop and run:
 
 ```bash
 git clone git://github.com/citrus/spree_essential_cms.git
@@ -155,34 +126,10 @@ bundle exec rails s
 
 
 ------------------------------------------------------------------------------
-Testing
-------------------------------------------------------------------------------
-
-Testing for spree_essential_cms is done with unit tests and capybara integration tests. To get setup, run the commands below:
-
-```bash
-git clone git://github.com/citrus/spree_essential_cms.git
-cd spree_essential_cms
-bundle install
-bundle exec dummier
-```
-
-
-Now you've got a test app setup in `test/dummy`. Now you can run the tests with:
-
-```bash
-bundle exec rake
-```
-
-
-If for any reason you want to re-create your `test/dummy` app, just re-run `bundle exec dummier`.
-
-
-------------------------------------------------------------------------------
 Change Log
 ------------------------------------------------------------------------------
 
-**0.3.0.rc1 - 2012/1/16**
+**2012/1/16**
 
 * Add support for Spree 1.0.x
 
@@ -219,6 +166,7 @@ Change Log
 To Do
 ------------------------------------------------------------------------------
 
+* more tests... many many more.
 * optimizations
 * A 'create translation' button that clones the current page's contents into another language
 * add widgets that you can drop into any page
@@ -232,9 +180,7 @@ Contributors
 ------------------------------------------------------------------------------
 
 * Spencer Steffen ([@citrus](https://github.com/citrus))
-* Stéphane Bounmy ([@sbounmy](https://github.com/sbounmy))
 * Kyle West ([@kylewest](https://github.com/kylewest))
-* Derek Ethier ([@ethier](https://github.com/ethier))
 * [@kpitn](https://github.com/kpitn)
 
 

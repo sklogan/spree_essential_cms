@@ -1,5 +1,11 @@
 class Spree::Admin::PagesController < Spree::Admin::ResourceController
   
+  before_filter :load_resource
+
+  def index
+    @pages = collection
+  end
+
   def location_after_save
     case params[:action]
       when "create"
@@ -24,12 +30,12 @@ class Spree::Admin::PagesController < Spree::Admin::ResourceController
     def find_resource
       @page ||= ::Spree::Page.find_by_path(params[:id])
     end
-    
+
     def collection
-      params[:q] ||= {}
-      params[:q][:sort] ||= "page.asc"
-      @search = Spree::Page.search(params[:q])
-      @collection = @search.result.page(params[:page]).per(Spree::Config[:orders_per_page])
+      params[:search] ||= {}
+      params[:search][:meta_sort] ||= "page.asc"
+      @search = Spree::Page.metasearch(params[:search])
+      @collection = @search.page(params[:page]).per(Spree::Config[:orders_per_page])
     end
 
 end

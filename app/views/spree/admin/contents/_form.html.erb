@@ -32,14 +32,7 @@
     <%= error_message_on :content, :attachment %>
   <% end %>
   
-  <% if @content.attachment.exists?(:mini) %>
-    <%= form.field_container :delete_attachment do %>
-      <%= form.check_box :delete_attachment %>
-      <%= form.label :delete_attachment, t('content.delete_attachment') %><br />
-    <% end %>
-  <% end %>
-  
-  <% if @content.attachment.exists?(:mini) %>
+  <% if @content.has_image? %>
     <p><%= image_tag @content.attachment.url(:mini) %></p>
   <% end %>
 
@@ -64,6 +57,8 @@
 </div>
 
 <% content_for :head do %>
+  <%= stylesheet_link_tag "markitup.css" %>
+  <%= javascript_include_tag 'jquery.markitup.js', 'markdown.set.js' %>
   <script type="text/javascript">
   //<![CDATA[
     $(document).ready(function() {

@@ -1,19 +1,15 @@
 class Spree::PageImage < Spree::Asset
 
-  attr_accessible :viewable, :attachment, :alt
+  validate :no_attachement_errors
 
-  validates_attachment_presence :attachment
-  
   has_attached_file :attachment,
     :styles => Proc.new{ |clip| clip.instance.attachment_sizes },
-    :default_style => :medium,
-    :url => '/spree/pages/:id/:style/:basename.:extension',
-    :path => ':rails_root/public/spree/pages/:id/:style/:basename.:extension'
-
+    :default_style => :medium
+ 
   def image_content?
-    attachment_content_type.to_s.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
+    attachment_content_type.match(/\/(jpeg|png|gif|tiff|x-photoshop)/)
   end
-
+     
   def attachment_sizes
     sizes = {}
     if image_content?
@@ -22,5 +18,14 @@ class Spree::PageImage < Spree::Asset
     end
     sizes
   end
-
+  
+  def no_attachement_errors
+    unless attachment.errors.empty?
+      # uncomment this to get rid of the less-than-useful interrim messages
+      errors.clear
+      errors.add :attachment, "Paperclip returned errors for file '#{attachment_file_name}' - check ImageMagick installation or image source file."
+      false
+    end
+  end
+  
 end
