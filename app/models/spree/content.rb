@@ -3,6 +3,8 @@ class Spree::Content < ActiveRecord::Base
   attr_accessor :delete_attachment
   attr_accessible :page_id, :title, :path, :body, :hide_title, :link, :link_text, :context, :attachment, :delete_attachment
 
+  translates :title, :body, :link, :link_text
+
   belongs_to :page
   validates_associated :page
   validates_presence_of :title, :page
@@ -12,7 +14,7 @@ class Spree::Content < ActiveRecord::Base
     :default_style => :preview,
     :url           => "/spree/contents/:id/:style/:basename.:extension",
     :path          => ":rails_root/public/spree/contents/:id/:style/:basename.:extension"
-  
+
   cattr_reader :per_page
   @@per_page = 10
 
