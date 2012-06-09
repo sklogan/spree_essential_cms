@@ -30,8 +30,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency('sqlite3',      '~> 1.3.5')
   s.add_development_dependency('launchy')
 
-  # rake 0.9+ breaks when running rake...
-  s.add_development_dependency('rake',         '0.8.7')
   # s.add_development_dependency('simplecov',    '~> 0.6.1')
   # s.add_development_dependency('turn',         '~> 0.9.3')
 
