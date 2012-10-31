@@ -15,20 +15,21 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-    
+
   s.require_paths = ['lib']
-  
+
   # Spree Essentials
   s.add_runtime_dependency('spree_essentials', '~> 0.5.0')
-  
+
   # Development
-  s.add_development_dependency('spree_sample', '~> 1.1.0')
+  s.add_development_dependency('spree_sample', '~> 1.2.0')
 	s.add_development_dependency('dummier',      '~> 0.3.2')
 	s.add_development_dependency('shoulda',      '~> 3.0.0')
+  s.add_development_dependency('shoulda-context', '1.0.0')
 	s.add_development_dependency('factory_girl', '~> 2.6.0')
 	s.add_development_dependency('capybara',     '~> 1.1.2')
   s.add_development_dependency('sqlite3',      '~> 1.3.5')
   # s.add_development_dependency('simplecov',    '~> 0.6.1')
   # s.add_development_dependency('turn',         '~> 0.9.3')
-  
+
 end
