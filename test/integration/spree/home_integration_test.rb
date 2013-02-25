@@ -1,35 +1,35 @@
 require 'test_helper'
 
 class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
-  
+
   setup do
     Spree::Page.destroy_all
     @images = Dir[File.expand_path("../../../../lib/tasks/sample", __FILE__) + "/*.jpg"]
   end
-  
+
   should "not redirect to products when no homepage is present" do
     visit "/"
     assert_equal "/", current_path
   end
-  
+
   context "an existing homepage" do
-  
+
     setup do
       @home = Spree::Page.create(:title => "Home", :meta_title => "Welcome to our homepage!", :path => "/")
       @home.contents.first.update_attributes(:body => "This is a test", :context => "main")
       @home.contents.create(:title => "Some might say...", :body => "This is another test", :context => "intro")
-      @images.each { |image| 
+      @images.each { |image|
         image = File.open(image)
         @home.images.create(:attachment => image, :alt => "Sailing", :viewable => @home)
         image.close
       }
       visit "/"
     end
-    
+
     should "have proper page title" do
-      assert_title "Spree Demo Site - Welcome to our homepage!"      
+      assert_title "Welcome to our homepage! - Spree Demo Site"
     end
-    
+
     should "have proper contents" do
       within ".left .content-main" do
         assert_seen "Home", :within => "h1.title"
@@ -40,7 +40,7 @@ class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
         assert_seen "This is another test", :within => "p"
       end
     end
-        
+
     should "have a images in slideshow" do
       within "#content .slideshow" do
         @home.images.each do |img|
@@ -48,7 +48,7 @@ class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
         end
       end
     end
-    
+
   end
-   
+
 end

@@ -1,7 +1,6 @@
 # Add our main menu override
 copy_file "overrides/main_menu.rb", "app/overrides/main_menu.rb"
 
->>>>>>> 0c88c51... allow i18n for contents
 # remove all stylesheets except core
 %w(admin store).each do |ns|
   template "assets/javascripts/#{ns}/all.js",  "app/assets/javascripts/#{ns}/all.js",  :force => true
