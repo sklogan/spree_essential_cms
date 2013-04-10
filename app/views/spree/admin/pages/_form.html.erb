@@ -1,3 +1,5 @@
+<%= render "spree/admin/shared/language_dropdown", :object => form.object -%>
+
 <%= form.field_container :title do %>
   <%= form.label :title, t('page.title') %> <span class="required">*</span><br />
   <%= form.text_field :title, :class => "title"  %>
@@ -39,11 +41,11 @@
 
   <%= form.field_container :visible do %>
     <%= form.check_box :visible, :class => "text" %> &nbsp;
-    <%= form.label :visible, t('page.visible') %> 
+    <%= form.label :visible, t('page.visible') %>
     &ndash; <em><%= t('page.explain_visible') %></em>
     <%= error_message_on :page, :visible %>
   <% end %>
-  
+
   <div id="field_nav_title">
     <%= form.field_container :nav_title do %>
       <%= form.label :nav_title, t('page.nav_title') %><br />
@@ -58,16 +60,16 @@
 //<![CDATA[
 
   $(document).ready(function() {
-  
+
   	$('#page_accessible').change(function(evt) {
       $('#field_path').toggle(this.checked);
     }).change();
-    
+
   	$('#page_visible').change(function(evt) {
       $('#field_nav_title').toggle(this.checked);
     }).change();
 
-  });     
-  
+  });
+
 //]]>
 </script>
