@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'test_helper'
 
 class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
@@ -15,7 +17,7 @@ class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
   context "an existing homepage" do
 
     setup do
-      @home = Spree::Page.create(:title => "Home", :meta_title => "Welcome to our homepage!", :path => "/")
+      @home = Spree::Page.create(:title => "Home", :meta_title => "Welcome to our homepage!", :meta_description => 'Find all the latest trends', :path => "/")
       @home.contents.first.update_attributes(:body => "This is a test", :context => "main")
       @home.contents.create(:title => "Some might say...", :body => "This is another test", :context => "intro")
       @images.each { |image|
@@ -49,6 +51,19 @@ class Spree::HomeIntegrationTest < SpreeEssentials::IntegrationCase
       end
     end
 
+    should 'have proper meta tags by language' do
+      @home.update_attributes :meta_title_fr => "Bienvenue sur notre page d'accueil!", :meta_description_fr => "Retrouvez toutes les dernières nouveautés"
+
+      %w(/ /en).each do |en_path|
+        visit en_path
+        assert_seen "Welcome to our homepage!"
+        assert have_meta?(:description, 'Find all the latest trends')
+      end
+
+      visit '/fr'
+      assert_seen "Bienvenue sur notre page d'accueil!"
+      assert have_meta?(:description, "Retrouvez toutes les dernières nouveautés")
+    end
   end
 
 end
