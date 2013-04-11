@@ -1,3 +1,8 @@
+def click_icon(type)
+  find(".icon-#{type}").click
+end
+
+
 def sample_image(path=nil)
   File.open(sample_image_path(path))
 end

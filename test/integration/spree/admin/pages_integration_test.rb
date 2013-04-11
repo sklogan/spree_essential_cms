@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
-  include Capybara::DSL
-  stub_authorization!
 
   setup do
     Spree::Page.destroy_all
@@ -76,13 +74,13 @@ class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
         end
       end
       click_button "Update"
-      assert_equal spree.admin_page_path(@page.reload), current_path
       assert_flash :success, %(Page "egap a tsuJ" has been successfully updated!)
+      assert_equal spree.admin_page_path(Spree::Page.find(@page.id)), current_path
     end
 
     should "get destroyed" do
       visit spree.admin_pages_path
-      click_link 'Delete'
+      click_icon :trash
       page.driver.browser.switch_to.alert.accept
       assert has_content?('Loading')
 

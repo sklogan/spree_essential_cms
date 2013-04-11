@@ -11,7 +11,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
     visit spree.admin_page_contents_path(@page)
     btn = find(".actions a.button").native
     assert_match /#{spree.new_admin_page_content_path(@page)}$/, btn.attribute('href')
-    assert_equal "New Content", btn.text
+    assert_equal "NEW CONTENT", btn.text
   end
 
   should "get new content" do
@@ -47,7 +47,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
     end
     click_button "Create"
     assert_equal spree.admin_page_contents_path(@page), current_path
-    assert_flash :notice, "Content has been successfully created!"
+    assert_flash :success, "Content has been successfully created!"
   end
 
   context "existing content" do
@@ -64,7 +64,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
       end
       click_button "Update"
       assert_equal spree.admin_page_contents_path(@page.reload), current_path
-      assert_flash :notice, "Content has been successfully updated!"
+      assert_flash :success, "Content has been successfully updated!"
     end
 
     should "not delete current attachment unless checkbox is checked" do
@@ -85,10 +85,9 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
 
     should "get destroyed" do
       visit spree.admin_page_contents_path(@page)
-      within "table.index" do
-        find("a[href='#']").click
-      end
-      assert find_by_id("popup_ok").click
+      click_icon :trash
+      page.driver.browser.switch_to.alert.accept
+      assert has_content?('Loading')
     end
 
   end
@@ -97,6 +96,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
 
     setup do
       setup_action_controller_behaviour(Spree::Admin::ContentsController)
+      @page.contents.destroy_all
       @contents = Array.new(2) {|i| Factory(:spree_content, :title => "Content ##{i + 1}", :page => @page, :position => i) }
     end
 
@@ -115,8 +115,9 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
 
   context "i18n" do
     should "handle i18n translation for body and title" do
-      @page = Factory.create(:spree_page, :path => "/just-another-page")
+      @page = Factory.create(:spree_page, :title => 'Just another page', :path => "/just-another-page")
       visit spree.new_admin_page_content_path(@page)
+
       within "#new_content" do
         fill_in "Title", :with => "Just some content"
         fill_in "Body",  :with => "Just some words in the content..."
@@ -130,7 +131,7 @@ class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
       end
       click_button "Create"
       assert_equal spree.admin_page_contents_path(@page), current_path
-      assert_flash :notice, "Content has been successfully created!"
+      assert_flash :success, "Content has been successfully created!"
 
       visit "/just-another-page"
       assert_seen "Just some words in the content..."
