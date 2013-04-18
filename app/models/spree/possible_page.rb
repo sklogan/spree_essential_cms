@@ -1,7 +1,7 @@
 module Spree
   class PossiblePage
 
-    def image_root_path
+    def self.image_root_path
       Spree::Image.attachment_definitions[:attachment][:url].split('/').take_while {|c| !(c =~ /^:/) }.join('/')
     end
 
