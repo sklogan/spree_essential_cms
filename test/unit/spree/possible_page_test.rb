@@ -12,7 +12,7 @@ class Spree::PossiblePageTest < ActiveSupport::TestCase
   context '#image_root_path' do
 
     should 'returns begining of path until interpolation' do
-      assert_equal '/spree/products', Spree::PossiblePage.new.image_root_path
+      assert_equal '/spree/products', Spree::PossiblePage.image_root_path
     end
 
   end
