@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   # Spree Essentials
-  s.add_runtime_dependency('spree_essentials', '~> 0.5.0')
+  s.add_runtime_dependency('spree_essentials', '~> 0.6.0')
   s.add_dependency('deface', '1.0.0.rc2')
   # Development
   s.add_development_dependency('spree_sample', '~> 1.3')
@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency('database_cleaner')
   # rake 0.9+ breaks when running rake...
   s.add_development_dependency('rake',         '0.8.7')
-  # s.add_development_dependency('simplecov',    '~> 0.6.1')
-  # s.add_development_dependency('turn',         '~> 0.9.3')
-
+  s.add_development_dependency('m')
+  s.add_development_dependency('mocha', '0.13.3')
 end

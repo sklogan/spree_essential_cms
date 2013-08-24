@@ -24,18 +24,3 @@ SpreeEssentials::IntegrationCase.send(:include, ActionController::TestCase::Beha
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 Capybara.default_wait_time = 5
-
-SpreeEssentials::IntegrationCase.class_eval do
-  include Capybara::DSL
-  stub_authorization!
-
-  DatabaseCleaner.strategy = :truncation
-
-  def setup
-    DatabaseCleaner.start
-  end
-
-  def teardown
-    DatabaseCleaner.clean
-  end
-end

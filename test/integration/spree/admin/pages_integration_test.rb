@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class Spree::Admin::PagesIntegrationTest < SpreeEssentials::IntegrationCase
+  stub_authorization!
 
   setup do
     Spree::Page.destroy_all

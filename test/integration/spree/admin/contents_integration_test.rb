@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class Spree::Admin::ContentsIntegrationTest < SpreeEssentials::IntegrationCase
+  stub_authorization!
 
   setup do
     Spree::Content.destroy_all
