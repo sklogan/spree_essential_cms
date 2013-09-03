@@ -4,7 +4,7 @@
   <%= render 'spree/shared/error_messages', :target => @page %>
 <% end %>
 
-<h1><%= t('.new_page') %></h1>
+<h1><%= Spree.t('.new_page') %></h1>
 
 <%= form_for([:admin, @page], :html => { :multipart => true }) do |f| %>
   <%= render "form", :form => f %>

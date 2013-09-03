@@ -1,19 +1,19 @@
 <% content_for :page_title do %>
-  <%= t('.listing_pages') %>
+  <%= Spree.t('.listing_pages') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <div class="toolbar" data-hook="toolbar">
     <ul class="actions header-action-links inline-menu">
     <li>
-      <%= button_link_to t('.new_page'), new_object_url, :icon => 'icon-plus' %>
+      <%= button_link_to Spree.t('.new_page'), new_object_url, :icon => 'icon-plus' %>
     </li>
     </ul>
   </div>
 <% end %>
 
 <% content_for :table_filter_title do %>
-  <%= t(:search) %>
+  <%= Spree.t(:search) %>
 <% end %>
 
 <% content_for :table_filter do %>
@@ -23,13 +23,13 @@
       <div data-hook="admin_pages_index_search">
         <div class="alpha nine columns">
           <div class="field">
-            <%= f.label :title_cont, t('page.title') %>
+            <%= f.label :title_cont, Spree.t('page.title') %>
             <%= f.text_field :title_cont, :size => 25 %>
           </div>
         </div>
         <div class="four columns">
           <div class="field">
-            <%= f.label :path_cont, t('page.path') %>
+            <%= f.label :path_cont, Spree.t('page.path') %>
             <%= f.text_field :path_cont, :size => 25 %>
           </div>
         </div>
@@ -38,7 +38,7 @@
       <div class="clear"></div>
 
       <div class="form-buttons actions filter-actions" data-hook="admin_pages_index_search_buttons">
-        <%= button t(:search), 'icon-search' %>
+        <%= button Spree.t(:search), 'icon-search' %>
       </div>
     <% end %>
   </div>
@@ -47,11 +47,11 @@
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_pages_url -%>">
   <thead>
   <tr>
-      <th><%= sort_link @search, :title, t("page.title") %></th>
-      <th><%= sort_link @search, :path, t("page.path") %></th>
-      <th><%= sort_link @search, :accessible, t("page.accessible") %></th>
-      <th><%= sort_link @search, :visible, t("page.visible") %></th>
-      <th><%= t("action") %></th>
+      <th><%= sort_link @search, :title, Spree.t("page.title") %></th>
+      <th><%= sort_link @search, :path, Spree.t("page.path") %></th>
+      <th><%= sort_link @search, :accessible, Spree.t("page.accessible") %></th>
+      <th><%= sort_link @search, :visible, Spree.t("page.visible") %></th>
+      <th><%= Spree.t("action") %></th>
   </tr>
   </thead>
   <tbody>
@@ -62,8 +62,8 @@
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
       <td>
-        <%= link_to_with_icon :accept, t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
-        <%= link_to_with_icon :pages, t('page.contents'), admin_page_contents_path(page) %> &nbsp;
+        <%= link_to_with_icon :accept, Spree.t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
+        <%= link_to_with_icon :pages, Spree.t('page.contents'), admin_page_contents_path(page) %> &nbsp;
         <%= link_to_edit page %> &nbsp;
         <%= link_to_delete page %>
       </td>
