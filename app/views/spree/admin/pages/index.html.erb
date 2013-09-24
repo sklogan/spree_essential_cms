@@ -62,7 +62,7 @@
       <td><%= page.accessible %></td>
       <td><%= page.visible %></td>
       <td>
-        <%= link_to_with_icon :accept, Spree.t('preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
+        <%= link_to_with_icon :accept, Spree.t('page.preview'), page.path, :onclick => 'window.open(this.href);return false;' %> &nbsp;
         <%= link_to_with_icon :pages, Spree.t('page.contents'), admin_page_contents_path(page) %> &nbsp;
         <%= link_to_edit page %> &nbsp;
         <%= link_to_delete page %>

@@ -3,7 +3,6 @@ require 'test_helper'
 class Spree::PagesIntegrationTest < SpreeEssentials::IntegrationCase
 
   setup do
-    Spree::Page.destroy_all
     @images = Dir[File.expand_path("../../../../lib/tasks/sample", __FILE__) + "/*.jpg"]
   end
 

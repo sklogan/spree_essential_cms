@@ -73,7 +73,9 @@ private
 
   def reprocess_images_if_context_changed
     return unless context_changed? && attachment_file_name.present?
-    attachment.reprocess!
+    #attachment.reprocess! caused infinite loop https://github.com/thoughtbot/paperclip/issues/866
+    attachment.assign(attachment)
+    attachment.save
   end
 
   def has_value(selector)

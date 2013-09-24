@@ -8,7 +8,6 @@ class Spree::ContentTest < ActiveSupport::TestCase
   context "An existing piece of content" do
 
     setup do
-      Spree::Page.destroy_all
       @page = Factory(:spree_page)
       @content = Factory(:spree_content, :page => @page)
     end
