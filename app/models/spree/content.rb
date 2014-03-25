@@ -1,9 +1,9 @@
 class Spree::Content < ActiveRecord::Base
 
   attr_accessor :delete_attachment
-  attr_accessible :page_id, :title, :path, :body, :hide_title, :link, :link_text, :context, :attachment, :delete_attachment
+  #attr_accessible :page_id, :title, :path, :body, :hide_title, :link, :link_text, :context, :attachment, :delete_attachment
 
-  translates :title, :body, :link, :link_text
+  #translates :title, :body, :link, :link_text
 
   belongs_to :page
   validates_associated :page
@@ -73,7 +73,9 @@ private
 
   def reprocess_images_if_context_changed
     return unless context_changed? && attachment_file_name.present?
-    attachment.reprocess!
+    #attachment.reprocess! caused infinite loop https://github.com/thoughtbot/paperclip/issues/866
+    attachment.assign(attachment)
+    attachment.save
   end
 
   def has_value(selector)

@@ -4,14 +4,14 @@
   <%= render 'spree/shared/error_messages', :target => @content %>
 <% end %>
 
-<h2><%= t('.edit_content') %></h2>
+<h2><%= Spree.t('.edit_content') %></h2>
 
 
 <%= form_for([:admin, @page, @content], :html => { :multipart => true }) do |f| %>
-  <%= render "spree/admin/shared/language_dropdown", :object => @content -%>
+  <%#= render "spree/admin/shared/language_dropdown", :object => @content -%>
 
   <%= render "form", :form => f %>
   <p class="form-buttons">
-    <%= button t("update") %> <%= t('or') %> <%= link_to t('cancel'), collection_url %>
+    <%= button Spree.t("update") %> <%= Spree.t('or') %> <%= link_to Spree.t('cancel'), collection_url %>
   </p>
 <% end %>

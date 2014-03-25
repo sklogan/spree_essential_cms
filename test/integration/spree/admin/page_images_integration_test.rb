@@ -4,7 +4,6 @@ class Spree::Admin::PageImagesIntegrationTest < SpreeEssentials::IntegrationCase
   stub_authorization!
 
   setup do
-    Spree::PageImage.destroy_all
     @page = Spree::Page.first || Factory.create(:spree_page)
   end
 
@@ -28,9 +27,7 @@ class Spree::Admin::PageImagesIntegrationTest < SpreeEssentials::IntegrationCase
     visit spree.new_admin_page_image_path(@page)
     click_button "Create"
     within "#errorExplanation" do
-      assert_seen "2 errors prohibited this record from being saved:"
-      assert_seen "Attachment can't be empty"
-      assert_seen "Attachment file name can't be empty"
+      assert_seen "Attachment can't be blank"
     end
   end
 

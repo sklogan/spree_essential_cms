@@ -1,4 +1,4 @@
-# Spree Essential CMS [![Build Status](https://secure.travis-ci.org/citrus/spree_essential_cms.png)](http://travis-ci.org/citrus/spree_essential_cms)
+# Spree Essential CMS [![Build Status](https://secure.travis-ci.org/sbounmy/spree_essential_cms.png)](http://travis-ci.org/sbounmy/spree_essential_cms)
 
 A robust CMS for Spree Commerce.
 
@@ -70,9 +70,9 @@ This example override can be found in `test/dummy_hooks/templates/main_menu.rb`
 Usage
 ------------------------------------------------------------------------------
 
-Basic usage of this CMS is trivial. Create pages and add content... 
+Basic usage of this CMS is trivial. Create pages and add content...
 
-Pages also have images so you can create galleries or slideshows.  
+Pages also have images so you can create galleries or slideshows.
 
 
 ### Content Contexts

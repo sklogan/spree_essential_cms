@@ -1,6 +1,6 @@
 class Spree::PageImage < Spree::Asset
 
-  attr_accessible :viewable, :attachment, :alt
+  #attr_accessible :viewable, :attachment, :alt
 
   validates_attachment_presence :attachment
   

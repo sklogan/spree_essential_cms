@@ -12,7 +12,7 @@
     <%= render "form", :form => f %>
   </table>
   <p class="form-buttons">
-    <%= button t("update") %>
-    or <%= link_to t("cancel"), admin_page_images_url(@page), :id => "cancel_link" %>
+    <%= button Spree.t("update") %>
+    or <%= link_to Spree.t("cancel"), admin_page_images_url(@page), :id => "cancel_link" %>
   </p>
 <% end %>

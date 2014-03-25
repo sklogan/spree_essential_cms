@@ -1,3 +1,3 @@
 module SpreeEssentialCms
-  VERSION = "0.4.0"
+  VERSION = "2.1.0"
 end

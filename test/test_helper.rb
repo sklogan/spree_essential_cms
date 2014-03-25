@@ -11,8 +11,7 @@ ENV["RAILS_ROOT"] = File.expand_path("../dummy",  __FILE__)
 require 'capybara'
 require 'capybara/dsl'
 
-require 'database_cleaner'
-require 'debugger'
+# require 'debugger'
 require "spree_essentials/testing/test_helper"
 require "spree_essentials/testing/integration_case"
 

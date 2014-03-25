@@ -2,7 +2,7 @@
   <div class="toolbar" data-hook="toolbar">
     <ul class="actions header-action-links inline-menu">
     <li>
-      <%= button_link_to t("new_image"), new_object_url, :icon => 'icon-plus', :id => "new_image_link" %>
+      <%= button_link_to Spree.t("new_image"), new_object_url, :icon => 'icon-plus', :id => "new_image_link" %>
     </li>
     </ul>
   </div>
@@ -15,9 +15,9 @@
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_page_images_url(@page) -%>">
   <thead>
     <tr>
-      <th><%= t("thumbnail") %></th>
-      <th><%= t("alt_text") %></th>
-      <th><%= t("action") %></th>
+      <th><%= Spree.t("thumbnail") %></th>
+      <th><%= Spree.t("alt_text") %></th>
+      <th><%= Spree.t("action") %></th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +26,7 @@
         <td><span class="handle">&nbsp;</span>&nbsp; <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:large)) %></td>
         <td><%= image.alt %></td>
         <td class="actions">
-          <%= link_to_with_icon('edit', t("edit"), edit_admin_page_image_url(@page, image)) %>
+          <%= link_to_with_icon('edit', Spree.t("edit"), edit_admin_page_image_url(@page, image)) %>
           &nbsp;
           <%= link_to_delete image, {:url => admin_page_image_url(@page, image) }%>
         </td>

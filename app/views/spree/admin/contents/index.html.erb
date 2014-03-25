@@ -1,19 +1,19 @@
 <% content_for :page_title do %>
-  <%= t('.listing_contents') %>
+  <%= Spree.t('.listing_contents') %>
 <% end %>
 
 <% content_for :page_actions do %>
   <div class="toolbar" data-hook="toolbar">
     <ul class="actions header-action-links inline-menu">
     <li>
-      <%= button_link_to t('.new_content'), new_object_url, :icon => 'icon-plus' %>
+      <%= button_link_to Spree.t('.new_content'), new_object_url, :icon => 'icon-plus' %>
     </li>
     </ul>
   </div>
 <% end %>
 
 <% content_for :table_filter_title do %>
-  <%= t(:search) %>
+  <%= Spree.t(:search) %>
 <% end %>
 
 <div id="table-filter" data-hook class="twelve columns">
@@ -25,13 +25,13 @@
       <div data-hook="admin_contents_index_search">
         <div class="alpha six columns">
           <div class="field">
-            <%= f.label :title_cont, t('content.title') %>
+            <%= f.label :title_cont, Spree.t('content.title') %>
             <%= f.text_field :title_cont, :size => 25 %>
           </div>
         </div>
         <div class="five columns">
           <div class="field">
-            <%= f.label :context_cont, t('content.context') %>
+            <%= f.label :context_cont, Spree.t('content.context') %>
             <%= f.text_field :context_cont, :size => 25 %>
           </div>
         </div>
@@ -40,7 +40,7 @@
       <div class="clear"></div>
 
       <div class="form-buttons actions filter-actions" data-hook="admin_contents_index_search_buttons">
-        <%= button t(:search), 'icon-search' %>
+        <%= button Spree.t(:search), 'icon-search' %>
       </div>
 
       <% end %>
@@ -54,8 +54,8 @@
 <table class="index sortable" data-sortable-link="<%= update_positions_admin_page_contents_url(@page) -%>">
   <thead>
   <tr>
-      <th><%= sort_link @search, :title, t("content.title") %></th>
-      <th><%= sort_link @search, :context, t("content.context") %></th>
+      <th><%= sort_link @search, :title, Spree.t("content.title") %></th>
+      <th><%= sort_link @search, :context, Spree.t("content.context") %></th>
       <th data-hook="admin_contents_index_header_actions" class="actions"></th>
   </tr>
   </thead>
